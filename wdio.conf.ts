@@ -1,4 +1,5 @@
 import type { Options } from "@wdio/types";
+
 export const config: Options.Testrunner = {
   runner: "local",
   autoCompileOpts: {
@@ -8,7 +9,7 @@ export const config: Options.Testrunner = {
       transpileOnly: true,
     },
   },
-  specs: ["./features/**/*.feature"],
+  specs: ["./src/features/**/*.feature"],
   exclude: [
     // 'path/to/excluded/files'
   ],
@@ -63,9 +64,12 @@ export const config: Options.Testrunner = {
   // Whether or not retried spec files should be retried immediately or deferred to the end of the queue
   // specFileRetriesDeferred: false,
   //
-  reporters: ["spec", ["allure", { outputDir: "allure-results" }]],
+  reporters: [
+    ["spec", { realtimeReporting: true }],
+    ["allure", { outputDir: "allure-results" }],
+  ],
   cucumberOpts: {
-    require: ["./features/step-definitions/steps.ts"],
+    require: ["./src/step-definitions/steps.ts"],
     // <boolean> show full backtrace for errors
     backtrace: false,
     // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
@@ -186,8 +190,11 @@ export const config: Options.Testrunner = {
    * @param {number}             result.duration  duration of scenario in milliseconds
    * @param {object}             context          Cucumber World object
    */
-  // afterStep: function (step, scenario, result, context) {
-  // },
+  afterStep: function (_step, _scenario, result) {
+    if (result.error) {
+      browser.takeScreenshot();
+    }
+  },
   /**
    *
    * Runs after a Cucumber Scenario.

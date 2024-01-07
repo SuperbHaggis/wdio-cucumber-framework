@@ -17,8 +17,7 @@ To install the framework, simply run `npm install` or `npm -i`.
 
 In order to run login tests, you will need to set your username and password as environment variables (examples TBD).
 
-## Running Tests
+## Helpful NPM Scripts
 
-To run tests, use `npm run wdio`
-
-To run individual scenarios (TBD)
+- Start a test run: `npm run test`
+- View the latest Allure report: `npm run report`
