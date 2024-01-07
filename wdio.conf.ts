@@ -8,7 +8,7 @@ export const config: Options.Testrunner = {
       transpileOnly: true,
     },
   },
-  specs: ["../features/**/*.feature"],
+  specs: ["./features/**/*.feature"],
   exclude: [
     // 'path/to/excluded/files'
   ],

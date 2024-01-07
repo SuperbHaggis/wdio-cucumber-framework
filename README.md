@@ -9,7 +9,7 @@ This framework is inspired by projects I worked on at EPAM, though it does not i
 - WebdriverIO (testrunner)
 - Cucumber and TypeScript (test scripting)
 - Allure (reporting)
-- ESLint (code quality)
+- ESLint, Prettier, and Husky (code quality)
 
 ## Installation and Configuration
 
