@@ -1,4 +1,5 @@
 import type { Options } from "@wdio/types";
+import "dotenv/config";
 
 export const config: Options.Testrunner = {
   runner: "local",
@@ -10,21 +11,19 @@ export const config: Options.Testrunner = {
     },
   },
   specs: ["./src/features/**/*.feature"],
-  exclude: [
-    // 'path/to/excluded/files'
-  ],
+  exclude: ["./src/features/**/header.feature"],
   maxInstances: 10,
   capabilities: [
     {
       browserName: "chrome",
     },
-    {
-      browserName: "firefox",
-    },
+    // {
+    //   browserName: "firefox",
+    // },
   ],
 
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevel: "info",
+  logLevel: "error",
   //
   // Set specific log levels per logger
   // loggers:
@@ -52,6 +51,7 @@ export const config: Options.Testrunner = {
   // commands. Instead, they hook themselves up into the test process.
   // services: [],
   //
+
   framework: "cucumber",
 
   //
@@ -68,27 +68,22 @@ export const config: Options.Testrunner = {
     ["spec", { realtimeReporting: true }],
     ["allure", { outputDir: "allure-results" }],
   ],
+
   cucumberOpts: {
-    require: ["./src/step-definitions/steps.ts"],
-    // <boolean> show full backtrace for errors
+    require: ["./src/step-definitions/*.steps.ts"],
     backtrace: false,
     // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
     requireModule: [],
-    // <boolean> invoke formatters without executing steps
     dryRun: false,
-    // <boolean> abort the run on first failure
     failFast: false,
     // <boolean> hide step definition snippets for pending steps
     snippets: true,
     // <boolean> hide source uris
     source: true,
-    // <boolean> fail if there are any undefined or pending steps
     strict: false,
     // <string> (expression) only execute the features or scenarios with tags matching the expression
-    tagExpression: "",
-    // <number> timeout for step definitions
+    // tagExpression: "",
     timeout: 60000,
-    // <boolean> Enable this config to treat undefined definitions as warnings.
     ignoreUndefinedDefinitions: false,
   },
 
@@ -272,3 +267,7 @@ export const config: Options.Testrunner = {
   // afterAssertion: function(params) {
   // }
 };
+
+// if (argv.capabilities) {
+//   config.capabilities = [{browserName: argv.capabilities}]
+// }

@@ -1,6 +1,6 @@
 # WebdriverIO Cucumber Framework Example
 
-A test automation framework for [Converse's online store](www.converse.com) built with WebdriverIO and Cucumber.
+A test automation framework for [Drivethru RPG](https://preview.drivethrurpg.com) built with WebdriverIO and Cucumber.
 
 ## Description
 
