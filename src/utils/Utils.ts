@@ -8,12 +8,14 @@ class Utils {
   }
 
   getPage(page: string) {
-    const pageString = `${page} page` as keyof typeof Pages;
+    const pageString = `${page} Page` as keyof typeof Pages;
     return pageString;
   }
 
-  async switchToIFrame(locator: string) {
-    const iFrame = await $(locator);
+  async switchToIFrame(locator: string | null) {
+    const iFrame: WebdriverIO.Element | null = locator
+      ? await $(locator)
+      : null;
     await browser.switchToFrame(iFrame);
   }
 }

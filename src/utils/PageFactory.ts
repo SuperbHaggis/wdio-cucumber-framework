@@ -4,10 +4,10 @@ import loginComponent from "../pageobjects/components/login.component";
 import welcomeComponent from "../pageobjects/components/welcome.component";
 
 class PageFactory {
-  "Home page" = homePage;
-  "Login component" = loginComponent;
-  "Header component" = headerComponent;
-  "Welcome component" = welcomeComponent;
+  "Home Page" = homePage;
+  "Login Component" = loginComponent;
+  "Header Component" = headerComponent;
+  "Welcome Component" = welcomeComponent;
 }
 
 export default new PageFactory();
