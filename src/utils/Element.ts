@@ -12,10 +12,6 @@ class Element {
   //     const elementArray = await $$(locator);
   //     return this.element;
   // }
-
-  async click() {
-    this.element.click();
-  }
 }
 
 export default new Element();

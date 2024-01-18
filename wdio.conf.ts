@@ -1,5 +1,7 @@
 import type { Options } from "@wdio/types";
 import "dotenv/config";
+import * as fs from "fs";
+import * as path from "path";
 
 export const config: Options.Testrunner = {
   runner: "local",
@@ -11,7 +13,7 @@ export const config: Options.Testrunner = {
     },
   },
   specs: ["./src/features/**/*.feature"],
-  exclude: ["./src/features/**/header.feature"],
+  exclude: [],
   maxInstances: 10,
   capabilities: [
     {
@@ -100,8 +102,19 @@ export const config: Options.Testrunner = {
    * @param {object} config wdio configuration object
    * @param {Array.<Object>} capabilities list of capabilities details
    */
-  // onPrepare: function (config, capabilities) {
-  // },
+  onPrepare: function () {
+    const directory = "allure-results";
+
+    fs.readdir(directory, (err, files) => {
+      if (err) throw err;
+
+      for (const file of files) {
+        fs.unlink(path.join(directory, file), (err) => {
+          if (err) throw err;
+        });
+      }
+    });
+  },
   /**
    * Gets executed before a worker process is spawned and can be used to initialize specific service
    * for that worker as well as modify runtime environments in an async fashion.
